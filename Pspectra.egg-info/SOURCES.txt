@@ -1,0 +1,10 @@
+README.md
+setup.py
+Pspectra/__init__.py
+Pspectra.egg-info/PKG-INFO
+Pspectra.egg-info/SOURCES.txt
+Pspectra.egg-info/dependency_links.txt
+Pspectra.egg-info/top_level.txt
+exampledoc/__init__.py
+exampledoc/conf.py
+exampledoc/correlate.py
