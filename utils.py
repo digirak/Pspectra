@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 from astropy.io import fits
+from scipy.signal import savgol_filter
 def addRandomNoise(vector,kind='normal',noise_fraction=0.5):
     """ Add random noise
 
@@ -48,5 +49,29 @@ def readFile(filename):
         print("Unreadable!")
         return 0
     return (data['Wavelength (microns)'],data['Planet Flux (10^-6 erg/cm2/s/Hz)'])
+def applyFilter(flux,window_size,order):
+    """
+    Apply the Savgol filter(
 
+    Savitzky-Golay filter used in place of median filter for mean subtraction
+    Args:
+        flux (array): 1D spectrum vector
+        window_size (int): size of window
+        order (int): polynomial order of filter
+    Returns:
+        flux_dat (array): flux flattened
+    """
+
+    flux_filt=savgol_filter(flux,window_size,order)
+    flux_dat=flux-flux_filt
+    return flux_dat
+def removeTelluric(wavelens,flux,wmin,wmax):
+    locs_l=list(np.ravel(np.where((wavelens>=np.min(wavelens)) & (wavelens<=wmin))))
+    locs_h= list(np.ravel(np.where((wavelens>=wmax) & (wavelens<=np.max(wavelens)))))
+    locs=locs_l+locs_h
+    flux=np.ravel(flux)
+    waves=wavelens[locs]
+    cut_flux=flux[locs]
+    new=np.interp(wavelens,waves,cut_flux)
+    return new
 
