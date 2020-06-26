@@ -11,8 +11,8 @@ import json
 from scipy.interpolate import interp1d
 import csv
 
-from Pspectra.Data.Data import Data 
-from Pspectra.calcSpectrum.calcSpectrum import Spectrum
+from Data.Data import Data 
+from calcSpectrum.calcSpectrum import Spectrum
 
 class retrieve_spectrum: 
     
