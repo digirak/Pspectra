@@ -9,7 +9,6 @@ from photutils import CircularAperture,aperture_photometry
 import vip_hci
 from scipy.signal import savgol_filter
 from utils import removeTelluric, applyFilter
-from callPCACrossCorr import applyFilter
 from astropy.convolution import Gaussian1DKernel
 import warnings
 from matplotlib import pyplot as plt
@@ -31,7 +30,6 @@ class CrossCorr:
                      ,noise=0
                      ,wmin_wmax_tellurics=[1.75,2.1]):
         vels=self.vels
-        df=vels[1]-vels[0]
         dataflux=data_flux
         final=np.zeros(len(vels))
         self.f1=dataflux-dataflux.mean()
@@ -53,10 +51,7 @@ class CrossCorr:
             #ccov=np.corrcoef(f1,f2)[0][1]
             cf = ccov / (self.f1.std()*self.f2.std())
             final[i]=(cf[0])
-        max_vel=vels[np.argmax((final))]
         if (noise==0):
-
-
             locs_noise_l=[(np.where(((vels>-2000)) & (vels<-1000)))]
             locs_noise_h=[(np.where(((vels>1000)) & (vels<2000)))]
             noise_floor=np.sqrt(np.std(final[locs_noise_l])**2\

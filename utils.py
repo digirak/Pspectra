@@ -51,7 +51,7 @@ def readFile(filename):
     return (data['Wavelength (microns)'],data['Planet Flux (10^-6 erg/cm2/s/Hz)'])
 def applyFilter(flux,window_size,order):
     """
-    Apply the Savgol filter(
+    Apply the Savgol filter.
 
     Savitzky-Golay filter used in place of median filter for mean subtraction
     Args:
