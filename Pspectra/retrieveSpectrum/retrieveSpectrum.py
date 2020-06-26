@@ -1,8 +1,8 @@
-import numpy as np
 from petitRADTRANS import Radtrans
 from petitRADTRANS import nat_cst as nc
 from petitRADTRANS.retrieval_examples.emission.master_retrieval_model import calc_MMW
 
+import numpy as np
 import pylab as plt
 import os
 import random
@@ -11,11 +11,10 @@ import json
 from scipy.interpolate import interp1d
 import csv
 
-
 from Pspectra.Data.Data import Data 
 from Pspectra.calcSpectrum.calcSpectrum import Spectrum
 
-class retreive_spectrum: 
+class retrieve_spectrum: 
     
     def __init__(self, data_folder, data_filename, N_temp, state_T, elements, N_ab, state_ab,\
                  spectrum_folder, delta, wlmin, wlmax ): 

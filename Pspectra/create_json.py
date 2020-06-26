@@ -1,8 +1,7 @@
 import json
 
-
 def creating_json(ab1): 
-
+    
     parameters = {}
 
     parameters['ab']= ab1

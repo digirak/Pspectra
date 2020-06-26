@@ -15,9 +15,7 @@ from scipy.signal import savgol_filter
 #############
 
 ##########
-from Pspectra.Data import Data
-from Pspectra.retrieveSpectrum import retrieveSpectrum
-from Pspectra.calcSpectrum import calcSpectrum
+
 ##########
 
 ##########
