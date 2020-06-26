@@ -5,8 +5,8 @@ from scipy.interpolate import interp1d
 import sys
 import os
 import json
-from photutils import CircularAperture,aperture_photometry
-import vip_hci
+#from photutils import CircularAperture,aperture_photometry
+#import vip_hci
 from scipy.signal import savgol_filter
 from _utils import removeTelluric, applyFilter
 from astropy.convolution import Gaussian1DKernel
