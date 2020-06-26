@@ -3,8 +3,8 @@
     imports"""
 
 import numpy as np
-import vip_hci as vip
-import pandas as pd
+# import vip_hci as vip
+# import pandas as pd
 from astropy.io import fits
 from matplotlib import pyplot as plt
 #############
@@ -15,7 +15,9 @@ from scipy.signal import savgol_filter
 #############
 
 ##########
-#Malavika's import statements go in this space
+from Pspectra.Data import Data
+from Pspectra.retrieveSpectrum import retrieveSpectrum
+from Pspectra.calcSpectrum import calcSpectrum
 ##########
 
 ##########

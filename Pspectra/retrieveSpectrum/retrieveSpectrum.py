@@ -1,4 +1,19 @@
+import numpy as np
+from petitRADTRANS import Radtrans
+from petitRADTRANS import nat_cst as nc
+from petitRADTRANS.retrieval_examples.emission.master_retrieval_model import calc_MMW
 
+import pylab as plt
+import os
+import random
+from itertools import cycle, chain
+import json
+from scipy.interpolate import interp1d
+import csv
+
+
+from Pspectra.Data.Data import Data 
+from Pspectra.calcSpectrum.calcSpectrum import Spectrum
 
 class retreive_spectrum: 
     
@@ -40,8 +55,9 @@ class retreive_spectrum:
         
     def obtaining_data(self):
 
-        MMW= self.parameters['MMW']
+        #MMW= self.parameters['MMW']
         ab= self.parameters['ab']
+        MMW = calc_MMW(ab)
         gravity = self.parameters['g']
         
         if self.data.check_valueORfile(ab):            #checking whether file 
@@ -75,18 +91,17 @@ class retreive_spectrum:
             #print(temperature)
             for i in np.arange(self.N_ab):      #### Abundance variations #### 
                 
-                    a,b,p_a,p_b, p_e= self.spectrum.varyingAbundance(abundances, i) ##finding abundances #####                          
+                    a,b,p_a,p_b,p_e= self.spectrum.varyingAbundance(abundances, i) ##finding abundances #####                          
                     print(a,b)
                     wl, fl= self.spectrum.calculating_spectrum(a, b, pressures, temperature, gravity, MMW)  ##calculating spectrum ######
 
                     #saving the spectrum 
                     self.spectrum.saving_spectrum(wl,fl)
                     
-#                     print(j,i, 'percent ', percent)
-                    
+                    print(j,i, 'percent ', percent)
                     
                     #plotting and saving 
-#                     self.spectrum.plotting_PTprofile(pressures, temperature, percent)
-#                     self.spectrum.plotting_spectrum(wl,fl,percent,i, p_a,p_b, p_e, abK)
+                    self.spectrum.plotting_PTprofile(pressures, temperature, percent)
+                    self.spectrum.plotting_spectrum(wl,fl,percent,i, p_a,p_b, p_e, abK)
                     
                     
