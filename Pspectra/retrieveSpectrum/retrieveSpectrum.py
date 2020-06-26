@@ -80,7 +80,7 @@ class retrieve_spectrum:
         return  pressures, temperature, abundances, gravity, MMW 
     
     def Nspectra(self): 
-    
+        
         pressures, temperature, abundances, gravity, MMW = self.obtaining_data()
         abK= list(abundances.keys())
         
@@ -91,13 +91,13 @@ class retrieve_spectrum:
             for i in np.arange(self.N_ab):      #### Abundance variations #### 
                 
                     a,b,p_a,p_b,p_e= self.spectrum.varyingAbundance(abundances, i) ##finding abundances #####                          
-                    print(a,b)
+                    #print(a,b)
                     wl, fl= self.spectrum.calculating_spectrum(a, b, pressures, temperature, gravity, MMW)  ##calculating spectrum ######
 
                     #saving the spectrum 
                     self.spectrum.saving_spectrum(wl,fl)
                     
-                    print(j,i, 'percent ', percent)
+                    #print(j,i, 'percent ', percent)
                     
                     #plotting and saving 
                     self.spectrum.plotting_PTprofile(pressures, temperature, percent)

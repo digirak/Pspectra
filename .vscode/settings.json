@@ -4,5 +4,6 @@
             "name": "feature/simulating_spectrum",
             "base": "develop"
         }
-    ]
+    ],
+    "python.pythonPath": "/home/malavika/anaconda3/envs/petitRT/bin/python"
 }

@@ -109,7 +109,7 @@ class Spectrum:
         return a,b,p_a,p_b, p_e 
     
     def calculating_spectrum(self, a,b, pressures, temperature, gravity, MMW):
-            print(a,b)
+            #print(a,b)
             atmosphere =  Radtrans(line_species = list(a.keys()), \
                           rayleigh_species = list(b.keys()), \
                           continuum_opacities = ['H2-H2', 'H2-He'], \
