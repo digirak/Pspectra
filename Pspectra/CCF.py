@@ -1,3 +1,5 @@
+from __future__ import print_function, division
+
 import numpy as np
 from astropy.io import fits
 from glob import glob
@@ -8,11 +10,12 @@ import json
 #from photutils import CircularAperture,aperture_photometry
 #import vip_hci
 from scipy.signal import savgol_filter
-from _utils import removeTelluric, applyFilter
+from ._utils import removeTelluric, applyFilter
 from astropy.convolution import Gaussian1DKernel
 import warnings
 from matplotlib import pyplot as plt
 warnings.simplefilter('ignore', np.RankWarning)
+
 class CrossCorr:
     def __init__(self,vels):
         self.vels=vels

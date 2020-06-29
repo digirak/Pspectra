@@ -1,3 +1,5 @@
+from __future__ import print_function, division
+
 import numpy as np
 from petitRADTRANS import Radtrans
 from petitRADTRANS import nat_cst as nc
@@ -182,11 +184,26 @@ class Spectrum:
         plt.clf()
         
 
-    def saving_spectrum(self, wl, fl):   
+    def saving_spectrum(self, Spectrum, wl, fl, temperature, percent, a, p_a, b, p_b, s):   
         
-        with open(self.spectrum_folder+ '/spectrum.csv', mode='w+') as file:
-            writer = csv.writer(file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(['T_eq= ', '1500','log g= ','1e1**2.45'])
-            writer.writerow(['Wavelength (microns)', 'Planet Flux (10^-6 erg/cm2/s/Hz)'])
-            for l in np.arange(len(wl)):
-                writer.writerow([wl[l],fl[l]])
+        # with open(self.spectrum_folder+ '/spectrum.csv', mode='w+') as file:
+        #     writer = csv.writer(file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+        #     writer.writerow(['T_eq= ', '1500','log g= ','1e1**2.45'])
+        #     writer.writerow(['Wavelength (microns)', 'Planet Flux (10^-6 erg/cm2/s/Hz)'])
+        #     for l in np.arange(len(wl)):
+        #         writer.writerow([wl[l],fl[l]])
+
+        Spectrum[int(s)] = {'wl': wl.tolist() , 
+                       'fl': fl.tolist() ,
+                       'T': temperature.tolist(), 
+                       'Tp': percent, 
+                       'LineSpecies': list(a), 
+                       'LinesChange': p_a, 
+                       'RayleighSpecies' : list(b),
+                       'RayleighChange': p_b
+                        }
+        
+        with open(self.spectrum_folder +'/spectrum.json','w+') as fp: 
+            json.dump(Spectrum, fp, sort_keys=True, indent=4)
+
+        return Spectrum

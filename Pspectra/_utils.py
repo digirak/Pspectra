@@ -1,8 +1,12 @@
 """This is a general utilities function"""
+
+from __future__ import print_function, division
+
 import numpy as np
 import pandas as pd
 from astropy.io import fits
 from scipy.signal import savgol_filter
+
 def addRandomNoise(vector,kind='normal',noise_fraction=0.5):
     """ Add random noise
 

@@ -1,13 +1,5 @@
 import numpy as np
-from petitRADTRANS import Radtrans
-from petitRADTRANS import nat_cst as nc
-import pylab as plt
-import os
-import random
-from itertools import cycle, chain
 import json
-from scipy.interpolate import interp1d
-import csv
 
 class Data: 
     

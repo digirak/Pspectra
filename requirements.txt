@@ -1,0 +1,12 @@
+numpy
+petitRADTRANS
+pylab
+os
+random
+itertools
+json
+scipy
+csv
+glob
+sys
+

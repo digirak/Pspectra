@@ -1,7 +1,4 @@
-from petitRADTRANS import Radtrans
-from petitRADTRANS import nat_cst as nc
-from petitRADTRANS.retrieval_examples.emission.master_retrieval_model import calc_MMW
-
+from __future__ import print_function, division
 import numpy as np
 import pylab as plt
 import os
@@ -11,10 +8,14 @@ import json
 from scipy.interpolate import interp1d
 import csv
 
-from Data.Data import Data 
-from calcSpectrum.calcSpectrum import Spectrum
+from petitRADTRANS import Radtrans
+from petitRADTRANS import nat_cst as nc
+from petitRADTRANS.retrieval_examples.emission.master_retrieval_model import calc_MMW
 
-class retrieve_spectrum: 
+from Pspectra.Data import Data 
+from Pspectra.calcSpectrum import Spectrum
+
+class retrieveSpec: 
     
     def __init__(self, data_folder, data_filename, N_temp, state_T, elements, N_ab, state_ab,\
                  spectrum_folder, delta, wlmin, wlmax ): 
@@ -51,7 +52,7 @@ class retrieve_spectrum:
         self.spectrum=Spectrum(self.N_temp, self.state_T, self.elements,self.N_ab, self.state_ab,\
                                self.spectrum_folder, self.delta, self.wlmin, self.wlmax)
         
-        
+
     def obtaining_data(self):
 
         #MMW= self.parameters['MMW']
@@ -79,28 +80,31 @@ class retrieve_spectrum:
 
         return  pressures, temperature, abundances, gravity, MMW 
     
-    def Nspectra(self): 
+    def __call__(self): 
         
         pressures, temperature, abundances, gravity, MMW = self.obtaining_data()
         abK= list(abundances.keys())
-        
+
+        Spect = {}
         for j in np.arange(self.N_temp):         #### Temperature variations #### 
             
             temperature, percent = self.spectrum.varyingT(temperature, j) 
             #print(temperature)
             for i in np.arange(self.N_ab):      #### Abundance variations #### 
-                
+                    
+
                     a,b,p_a,p_b,p_e= self.spectrum.varyingAbundance(abundances, i) ##finding abundances #####                          
                     #print(a,b)
                     wl, fl= self.spectrum.calculating_spectrum(a, b, pressures, temperature, gravity, MMW)  ##calculating spectrum ######
 
-                    #saving the spectrum 
-                    self.spectrum.saving_spectrum(wl,fl)
+                    #saving and returning the spectrum 
+                    
+                    Spect = self.spectrum.saving_spectrum(Spect, wl,fl, temperature, percent, a.keys(), p_a, b.keys(), p_b, i+j)
                     
                     #print(j,i, 'percent ', percent)
                     
-                    #plotting and saving 
+                    #plotting and saving the plot 
                     self.spectrum.plotting_PTprofile(pressures, temperature, percent)
                     self.spectrum.plotting_spectrum(wl,fl,percent,i, p_a,p_b, p_e, abK)
                     
-                    
+        return Spect           
