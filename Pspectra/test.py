@@ -1,7 +1,7 @@
 
 import numpy as np
 
-from Pspectra import retrieveSpec, CrossCorr, 
+from Pspectra import retrieveSpec, CrossCorr
 from ._utils import * 
 
 data_filename = 'sample_file.json' 
