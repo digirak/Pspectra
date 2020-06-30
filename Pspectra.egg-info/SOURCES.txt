@@ -1,6 +1,13 @@
 README.md
 setup.py
+Pspectra/CCF.py
+Pspectra/Data.py
 Pspectra/__init__.py
+Pspectra/_utils.py
+Pspectra/calcSpectrum.py
+Pspectra/create_json.py
+Pspectra/retrieveSpectrum.py
+Pspectra/test.py
 Pspectra.egg-info/PKG-INFO
 Pspectra.egg-info/SOURCES.txt
 Pspectra.egg-info/dependency_links.txt
