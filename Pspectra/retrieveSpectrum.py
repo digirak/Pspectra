@@ -10,7 +10,7 @@ import csv
 
 from petitRADTRANS import Radtrans
 from petitRADTRANS import nat_cst as nc
-from petitRADTRANS.retrieval_examples.emission.master_retrieval_model import calc_MMW
+from .calc_MMW import calc_MMW
 
 from Pspectra.Data import Data 
 from Pspectra.calcSpectrum import Spectrum

@@ -2,9 +2,9 @@
 import numpy as np
 
 from Pspectra import retrieveSpec, CrossCorr
-from ._utils import * 
+from Pspectra._utils import * 
 
-data_filename = 'sample_file.json' 
+data_filename = 'sample_file1.json' 
 elements =[] 
 
 Spectra = retrieveSpec(data_folder='Pspectra/', data_filename= data_filename, \
