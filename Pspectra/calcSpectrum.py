@@ -115,7 +115,7 @@ class Spectrum:
             atmosphere =  Radtrans(line_species = list(a.keys()), \
                           rayleigh_species = list(b.keys()), \
                           continuum_opacities = ['H2-H2', 'H2-He'], \
-                          wlen_bords_micron = [self.wlmin, self.wlmax]), mode= modE)
+                          wlen_bords_micron = [self.wlmin, self.wlmax], mode= modE)
 
             abundances = a
             abundances.update(b)
