@@ -18,7 +18,7 @@ from Pspectra.calcSpectrum import Spectrum
 class retrieveSpec: 
     
     def __init__(self, data_folder, data_filename, N_temp, state_T, elements, N_ab, state_ab,\
-                 spectrum_folder, delta, wlmin, wlmax, modE): 
+                 spectrum_folder, delta, wlmin, wlmax, mode): 
         
         self.data_folder=  data_folder
         self.data_filename = data_filename
@@ -48,7 +48,7 @@ class retrieveSpec:
         self.delta= delta
         self.wlmin= wlmin
         self.wlmax= wlmax
-        self.modE = modE
+        self.mode = mode
         
         self.spectrum=Spectrum(self.N_temp, self.state_T, self.elements,self.N_ab, self.state_ab,\
                                self.spectrum_folder, self.delta, self.wlmin, self.wlmax)
@@ -96,7 +96,7 @@ class retrieveSpec:
 
                     a,b,p_a,p_b,p_e= self.spectrum.varyingAbundance(abundances, i) ##finding abundances #####                          
                     #print(a,b)
-                    wl, fl= self.spectrum.calculating_spectrum(a, b, pressures, temperature, gravity, MMW, self.modE)  ##calculating spectrum ######
+                    wl, fl= self.spectrum.calculating_spectrum(a, b, pressures, temperature, gravity, MMW, self.mode)  ##calculating spectrum ######
 
                     #saving and returning the spectrum 
                     
