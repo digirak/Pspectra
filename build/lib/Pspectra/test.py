@@ -2,16 +2,16 @@
 import numpy as np
 
 from Pspectra import retrieveSpec, CrossCorr
-from ._utils import * 
+from Pspectra._utils import * 
 
-data_filename = 'sample_file.json' 
+data_filename = 'sample_file1.json' 
 elements =[] 
 
 Spectra = retrieveSpec(data_folder='Pspectra/', data_filename= data_filename, \
         N_temp= 1 , state_T= 'None' ,  \
         elements= elements, N_ab=1, state_ab='None',\
         spectrum_folder ='/home/malavika/Documents/petitRT/spectrum_codeastro/',\
-        delta = 20 , wlmin = 0.3 , wlmax= 15) 
+        delta = 20 , wlmin = 0.3 , wlmax= 15, mode = 'lbl') 
 
 s= Spectra()[0]
 

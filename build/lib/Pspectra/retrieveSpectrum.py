@@ -10,7 +10,7 @@ import csv
 
 from petitRADTRANS import Radtrans
 from petitRADTRANS import nat_cst as nc
-from petitRADTRANS.retrieval_examples.emission.master_retrieval_model import calc_MMW
+from .calc_MMW import calc_MMW
 
 from Pspectra.Data import Data 
 from Pspectra.calcSpectrum import Spectrum
@@ -18,7 +18,7 @@ from Pspectra.calcSpectrum import Spectrum
 class retrieveSpec: 
     
     def __init__(self, data_folder, data_filename, N_temp, state_T, elements, N_ab, state_ab,\
-                 spectrum_folder, delta, wlmin, wlmax ): 
+                 spectrum_folder, delta, wlmin, wlmax, mode, scatt): 
         
         self.data_folder=  data_folder
         self.data_filename = data_filename
@@ -48,6 +48,8 @@ class retrieveSpec:
         self.delta= delta
         self.wlmin= wlmin
         self.wlmax= wlmax
+        self.mode = mode
+        self.scatt= scatt
         
         self.spectrum=Spectrum(self.N_temp, self.state_T, self.elements,self.N_ab, self.state_ab,\
                                self.spectrum_folder, self.delta, self.wlmin, self.wlmax)
@@ -95,7 +97,7 @@ class retrieveSpec:
 
                     a,b,p_a,p_b,p_e= self.spectrum.varyingAbundance(abundances, i) ##finding abundances #####                          
                     #print(a,b)
-                    wl, fl= self.spectrum.calculating_spectrum(a, b, pressures, temperature, gravity, MMW)  ##calculating spectrum ######
+                    wl, fl= self.spectrum.calculating_spectrum(a, b, pressures, temperature, gravity, MMW, self.mode, self.scatt)  ##calculating spectrum ######
 
                     #saving and returning the spectrum 
                     

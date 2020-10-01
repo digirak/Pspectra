@@ -5,6 +5,7 @@ Pspectra/Data.py
 Pspectra/__init__.py
 Pspectra/_utils.py
 Pspectra/calcSpectrum.py
+Pspectra/calc_MMW.py
 Pspectra/create_json.py
 Pspectra/retrieveSpectrum.py
 Pspectra/test.py
